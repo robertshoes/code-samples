@@ -1,0 +1,35 @@
+GUIDELINES TO CREATE THE API FOR THE WEB SERVICE
+
+*************************************
+
+DB design
+
+Domain
+id   PK
+domain_name vachar(100) --> will contain the domain's name. Ex. "http://www.gizmodo.com"
+
+
+Page
+id       PK
+i        varchar(300) --> will contain the title of the page.  Ex. "A article"
+path     varchar(300) --> will contain the path to the page. Ex. "/year/month/a-article"
+visitors number       --> will contain the number of visitors 
+change   number       --> will contain the delta of visitors from 5 seconds to actual time(|visitors_now - visitors_5_secs_ago|)
+domain_id FK(Domain.id)
+
+**************************************
+
+IDEAS FOR IMPLEMENTATION
+
+1.-Create endpoint using Django 1.8.3 and Django-Rest-Framework 3.1.3, python 2.7.6, sqlite3  *DONE*
+
+2.-Create a python script using the request API (http://docs.python-requests.org/en/latest/)  *DONE*
+in order to visit's ChartBeat's test API of toppages and grab some data from some domains as gizmodo.com
+
+3.-Create a python script that has an infinite loop and every 10 or 15 seconds calls our API  *DONE*
+and updates the database randomly in order to simulate cocurrents(visitors)
+
+
+***************************************
+
+

@@ -1,0 +1,17 @@
+<div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">{{convertDateFunc({theDate: cityWeather.dt}) | date: dateFormat}}</h3>
+                </div>
+                <div class="panel-body">
+                     Daytime temperature: {{convertToFahrenheitTemp({theTemp:cityWeather.temp.day})}} F
+                </div>   
+                    
+                
+                <div class="panel-body" ng-repeat="d in cityWeather.weather">
+                    Description: {{d.description}}
+                </div>
+            </div>
+        </div>
+    </div>

@@ -1,0 +1,17 @@
+{% if not added %}
+     
+    <h3 align="center">Edit Contact</h3>
+    <h2> Editing contact {{ first_name}} {{ last_name }} </h2>
+    
+    <form action="." method="post">
+            {% csrf_token %}
+            <table border="1" align="center">{{ contactsForm.as_table }}</table>            
+        <center><input type="submit" value="Submit" /></center>
+    </form>
+    <br />
+    <a href='/contacts/'>Go back to contact list</a>
+{% else %}
+    <p>Contact {{ first_name }} {{ last_name }} changed!.</p>
+    <a href='/contacts/'>Go back to contact list</a>
+{% endif %}
+

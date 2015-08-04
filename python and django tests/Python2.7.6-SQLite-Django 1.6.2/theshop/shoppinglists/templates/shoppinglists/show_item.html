@@ -1,0 +1,10 @@
+Items bought by {{item_list.0.user.get_username}}
+    <ul>
+    {% for item in item_list %}
+        <li>{{item.items.item_name}} ----- {{item.items.item_desc}} ----- {{item.quantity}}</li>
+    {% endfor %}
+    </ul>
+
+<br/>
+
+total items: {{total}}

@@ -1,0 +1,63 @@
+{% if contacts or search%}
+    <h3 align="center">Contact List</h3>
+    <table border=1 align="center">
+    <tr>
+        <td>First Name</td>
+        <td>Last Name</td>
+        <td>Phone Number</td>
+        <td>Address Line</td>
+        <td>City</td>
+        <td>State</td>
+        <td>Zip</td>
+    </tr>
+        
+    {% for c in contacts %}
+        <tr>
+            <td><a href="/contact_profile/{{c.id}}">{{ c.first_name }}</a></td>
+            <td><a href="/contact_profile/{{c.id}}">{{ c.last_name }}</a></td>
+            <td><a href="/contact_profile/{{c.id}}">{{ c.phone_number }}</a></td>
+            <td><a href="/contact_profile/{{c.id}}">{{ c.address_line }}</a></td>            
+            <td><a href="/contact_profile/{{c.id}}">{{ c.city }}</a></td>
+            <td><a href="/contact_profile/{{c.id}}">{{ c.state }}</a></td>
+            <td><a href="/contact_profile/{{c.id}}">{{ c.zip }}</a></td>        
+        </tr>            
+        
+    {% endfor %}
+    </table> 
+    <br /><br />
+    <table align="center">
+    <tr>
+    <td>
+    {% if back %}            
+                    <a href="/contacts?start={{ back_start }}&end={{ back_end }}"> << </a></center>{% endif %}</td>
+                    <td>
+    {% if forward %}
+                    <a href="/contacts?start={{ start }}&end={{ end }}"> >> </a>
+    {% endif %}
+                    </td>
+            </tr>
+        </table>
+    <br /><br />
+    <table align="center">
+            <tr><td><a href="/add_contact">Add new contact</a></td></tr>
+            <tr><td><a href="/search">Search</a></td></tr>
+    </table>
+    </center>
+    <br /><br />
+    Total contacts: {{ counter }}
+{% else %}
+    {% if search %}
+        <p>There are no contacts right now.</p>
+    {% else %}
+        <h3 align="center">Search Contact</h3>
+        <form action="." method="post">
+            {% csrf_token %}
+            <table border="0" align="center">
+                <tr><td>First Name: {{contactsForm.first_name}}</td></tr>                
+                <tr><td>Last Name: {{contactsForm.last_name}}</td></tr>                
+            </table>            
+        <center><input type="submit" value="Submit" /></center>
+    </form>
+        
+    {% endif%}
+{% endif %}
