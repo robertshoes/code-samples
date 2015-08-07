@@ -1,0 +1,13 @@
+This is a demo PHP5 web app that can login a user that can save personal data and images.  I handles
+sessions and connections to a MySQL DB.
+
+
+Some logic of how the code files interact each other.
+
+*****new_user.php  have the web form to create a new user
+*****validate.php  validate the new and existing user
+*****login.php     have the web form to login the existing user.  It will throw an error otherwise or redirect the user to new_user.php.  This can be accomplish using validate.php.
+*****myclasses.php will contain all possible classes that I need, for example a User class.
+
+
+
