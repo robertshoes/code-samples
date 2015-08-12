@@ -17,8 +17,8 @@ UPDATE: The latest release of Django is
 
 
 def list_contact(request, start=0,end=0):
-    #Using an algorithm created by me for
-    #pagination.
+    # Using an algorithm created by me for
+    # pagination.
     back = False
     back_start = ''
     back_end = ''
@@ -41,7 +41,6 @@ def list_contact(request, start=0,end=0):
             back_start = start - 3
             back_end = end - 3
             back = True
-            
     else:
         all_contacts = Contacts.objects.all()[1:4]
         first_time = 1
@@ -54,11 +53,11 @@ def list_contact(request, start=0,end=0):
                                 'first_time':first_time, 'back_start':back_start,'back_end':back_end, 'back':back, 'forward':forward, 'counter':counter})
     
 def new_contact(request):
-    #Checking for POST request and validation the form
+    # Checking for POST request and validation the form
     if request.POST:        
         contactsForm = ContactsForm(request.POST)        
         if contactsForm.is_valid():
-            #saving the contact to the DB
+            # saving the contact to the DB
             contactsForm.save()
             return render_to_response('add_contact.html', {'added': True, 'first_name': request.POST['first_name'], 'last_name': request.POST['last_name']}, context_instance=RequestContext(request))    
     else:        
@@ -69,9 +68,9 @@ def new_contact(request):
 
     
 def edit_contact(request, contact_id):
-    #valid contact since is part of the URL
-    #TODO: needs validation in order to avoid directly manipulation
-    #of the URL through the browser or a program
+    # Valid contact since is part of the URL
+    # TODO: needs validation in order to avoid directly manipulation
+    # of the URL through the browser or a program
     form = Contacts.objects.get(pk=contact_id)
     if request.POST:        
         contactsForm = ContactsForm(request.POST, instance=form)
@@ -80,15 +79,15 @@ def edit_contact(request, contact_id):
             return render_to_response('edit_contact.html', {'added': True, 'first_name': request.POST['first_name'], 'last_name': request.POST['last_name']})
     
     else:
-        #Passing the form to the ContacsForm class in order
-        #to populate the fields of thee web form
+        # Passing the form to the ContacsForm class in order
+        # to populate the fields of thee web form
         contactsForm = ContactsForm(instance=form) 
         
     return render_to_response('edit_contact.html', {'contactsForm': contactsForm, 'added': False, 'first_name': form.first_name, 'last_name': form.last_name}, context_instance=RequestContext(request))
     
     
 def search_contact(request):
-    #Search for contacts based on their names
+    # Search for contacts based on their names
     search = False
     all_contact = False
     counter = False
